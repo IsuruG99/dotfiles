@@ -24,7 +24,7 @@ monitor = HDMI-A-3,1920x1080@60,0x0,1
 # See https://wiki.hypr.land/Configuring/Keywords/
 
 # Set programs that you use
-$terminal = konsole
+$terminal = kitty
 $fileManager = dolphin
 $menu = hyprlauncher
 
@@ -37,15 +37,23 @@ $menu = hyprlauncher
 # Or execute your favorite apps at launch like this:
 
 exec-once = $terminal
-exec-once = $terminal -e bash -c "neofetch; exec bash"
+exec-once = kitty --title "Welcome" --class welcome bash -c "fastfetch; exec bash"
 exec-once = nm-applet & --indicator
 exec-once = waybar & hyprpaper
+exec-once = eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519
 
 #############################
 ### ENVIRONMENT VARIABLES ###
 #############################
 
 # See https://wiki.hypr.land/Configuring/Environment-variables/
+
+# NVIDIA specifics
+env = LIBVA_DRIVER_NAME,nvidia
+env = GBM_BACKEND,nvidia-drm
+env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+env = WLR_NO_HARDWARE_CURSORS,1               # often helps legacy drivers
+env = __GL_VRR_ALLOWED,0                      # disable if VRR related
 
 env = XCURSOR_SIZE,48
 env = HYPRCURSOR_SIZE,36
@@ -83,8 +91,10 @@ general {
     border_size = 2
 
     # https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
-    col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-    col.inactive_border = rgba(595959aa)
+    # col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+    # col.inactive_border = rgba(595959aa)
+    col.active_border = rgba(a1cdd8ee) rgba(73a3b7ee) 45deg
+    col.inactive_border = rgba(152528aa)
 
     # Set to true enable resizing windows by clicking and dragging on borders and gaps
     resize_on_border = false
@@ -106,17 +116,17 @@ decoration {
 
     shadow {
         enabled = true
-        range = 4
-        render_power = 3
-        color = rgba(1a1a1aee)
+        range = 8
+        render_power = 2
+#        color = rgba(1a1a1aee)
+        color = rgba(000000aa)
     }
 
     # https://wiki.hypr.land/Configuring/Variables/#blur
     blur {
         enabled = true
-        size = 3
-        passes = 1
-
+        size = 4
+        passes = 2  
         vibrancy = 0.1696
     }
 }
@@ -232,7 +242,7 @@ device {
 ###################
 
 # See https://wiki.hypr.land/Configuring/Keywords/
-$mainMod = SUPER # Sets "Windows" key as main modifier
+$mainMod = SUPER 
 
 # Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
 bind = $mainMod, RETURN, exec, $terminal
@@ -240,8 +250,6 @@ bind = $mainMod, SPACE, exec, $menu
 bind = $mainMod, C, killactive,
 bind = $mainMod, M, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit
 bind = $mainMod, E, exec, $fileManager
-# Clipboard history popup (like Widndows Super+V)
-bind = SUPER, V, exec, cursor-clip
 bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, J, layoutmsg, togglesplit # dwindle
 
@@ -304,7 +312,8 @@ bindl = , XF86AudioPrev, exec, playerctl previous
 #Screenshots Grimblast
 bind = , Print, exec, grimblast --freeze --notify copysave area
 bind = CONTROL, Print, exec, grimblast --freeze --notify copysave area | satty --filename -
-bind = SHIFT, Print, exec, grimblast --freeze --notify copysave output ~/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png 
+bind = SHIFT, Print, exec, grimblast --freeze --notify copysave output ~/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+
 ##############################
 ### WINDOWS AND WORKSPACES ###
 ##############################
