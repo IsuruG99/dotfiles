@@ -1,0 +1,98 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "spacing": 0,
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "custom/gpu",
+        "cpu",
+        "memory",
+        "network",
+        "custom/network-speed",
+        "pulseaudio",
+        "clock",
+        "tray"
+    ],
+
+    // ────────────────────────────────────────
+    // Module definitions
+    // ────────────────────────────────────────
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "󰼏",
+            "2": "󰼏",
+            "3": "󰼏",
+            "4": "󰼏",
+            "5": "󰼏",
+            "6": "󰼏",
+            "7": "󰼏",
+            "8": "󰼏",
+            "9": "󰼏",
+            "10": "󰼏",
+            "active": "󰮯",
+            "default": "󰼏"
+        }
+    },
+
+    "hyprland/window": {
+        "max-length": 50
+    },
+
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "GPU: {}%",
+        "interval": 3,
+        "return-type": "text"
+    },
+
+    "cpu": {
+        "format": "CPU: {usage}%"
+    },
+
+    "memory": {
+        "format": "RAM: {used:0.1f}GB"
+    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-disconnected": "Disconnected ⚠",
+        "tooltip-format": "{ifname}: {ipaddr}"
+    },
+    // New combined network module (speed + connection info)
+    "custom/network-speed": {
+        "exec": "~/.config/waybar/scripts/network-speed.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": "{}",
+        "tooltip": true
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-muted": "Muted {icon}",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol"
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+
+    "tray": {
+        "spacing": 10
+    }
+}
