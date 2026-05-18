@@ -15,7 +15,7 @@
 ################
 
 # See https://wiki.hypr.land/Configuring/Monitors/
-monitor = HDMI-A-3,1920x1080@60,0x0,1
+monitor=desc:HJW MACROSILICON 0x0002E842,1920x1080@60,0x0,1
 
 ###################
 ### MY PROGRAMS ###
@@ -25,9 +25,8 @@ monitor = HDMI-A-3,1920x1080@60,0x0,1
 
 # Set programs that you use
 $terminal = kitty
-$fileManager = dolphin
-$menu = hyprlauncher
-
+$fileManager = nemo 
+$menu = fuzzel 
 
 #################
 ### AUTOSTART ###
@@ -36,11 +35,15 @@ $menu = hyprlauncher
 # Autostart necessary processes (like notifications daemons, status bars, etc.)
 # Or execute your favorite apps at launch like this:
 
+# exec-once = kitty --title "Welcome" --class welcome bash -c "fastfetch; exec bash"
 exec-once = $terminal
-exec-once = kitty --title "Welcome" --class welcome bash -c "fastfetch; exec bash"
 exec-once = nm-applet & --indicator
-exec-once = waybar & hyprpaper
+exec-once = waybar #& hyprpaper
 exec-once = eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519
+exec-once = swaybg -i /home/tet/Pictures/hypr/wall-1.png -m fill
+exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once = systemctl --user start xdg-desktop-portal-hyprland
 
 #############################
 ### ENVIRONMENT VARIABLES ###
@@ -55,9 +58,11 @@ env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 env = WLR_NO_HARDWARE_CURSORS,1               # often helps legacy drivers
 env = __GL_VRR_ALLOWED,0                      # disable if VRR related
 
+env = GTK_THEME,Adwaita-dark
 env = XCURSOR_SIZE,48
 env = HYPRCURSOR_SIZE,36
 env = GRIMBLAST_EDITOR,satty --filename
+env = XDG_MENU_PREFIX,arch-
 
 
 ###################
@@ -85,16 +90,16 @@ env = GRIMBLAST_EDITOR,satty --filename
 
 # https://wiki.hypr.land/Configuring/Variables/#general
 general {
-    gaps_in = 5
-    gaps_out = 20
+    gaps_in = 4 
+    gaps_out = 8
 
     border_size = 2
 
     # https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
     # col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
     # col.inactive_border = rgba(595959aa)
-    col.active_border = rgba(a1cdd8ee) rgba(73a3b7ee) 45deg
-    col.inactive_border = rgba(152528aa)
+    col.active_border = rgba(56b6c2ee) rgba(e06c75ee) 45deg   # teal → red-ish, 45deg gradient
+    col.inactive_border = rgba(212234aa)
 
     # Set to true enable resizing windows by clicking and dragging on borders and gaps
     resize_on_border = false
@@ -119,7 +124,7 @@ decoration {
         range = 8
         render_power = 2
 #        color = rgba(1a1a1aee)
-        color = rgba(000000aa)
+        color = rgba(0f111744)
     }
 
     # https://wiki.hypr.land/Configuring/Variables/#blur
@@ -200,15 +205,13 @@ master {
 
 # https://wiki.hypr.land/Configuring/Variables/#misc
 misc {
-    force_default_wallpaper = -1 # Set to 0 or 1 to disable the anime mascot wallpapers
+    force_default_wallpaper = 0 # Set to 0 or 1 to disable the anime mascot wallpapers
     disable_hyprland_logo = false # If true disables the random hyprland logo / anime girl background. :(
 }
-
 
 #############
 ### INPUT ###
 #############
-
 # https://wiki.hypr.land/Configuring/Variables/#input
 input {
     kb_layout = us
@@ -216,19 +219,14 @@ input {
     kb_model =
     kb_options =
     kb_rules =
-
     follow_mouse = 1
-
     sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
-
     touchpad {
         natural_scroll = false
     }
 }
-
 # See https://wiki.hypr.land/Configuring/Gestures
 gesture = 3, horizontal, workspace
-
 # Example per-device config
 # See https://wiki.hypr.land/Configuring/Keywords/#per-device-input-configs for more
 device {
@@ -236,13 +234,18 @@ device {
     sensitivity = -0.5
 }
 
-
 ###################
 ### KEYBINDINGS ###
 ###################
 
 # See https://wiki.hypr.land/Configuring/Keywords/
 $mainMod = SUPER 
+
+# Screen Recording
+bind = CTRL_SHIFT, R, exec, ~/.config/hypr/record-start.sh
+bind = CTRL_SHIFT, S, exec, ~/.config/hypr/record-stop.sh
+# Toggle Floating Windows
+bind = $mainMod SHIFT, F, togglefloating
 
 # Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
 bind = $mainMod, RETURN, exec, $terminal
@@ -321,13 +324,52 @@ bind = SHIFT, Print, exec, grimblast --freeze --notify copysave output ~/Picture
 # See https://wiki.hypr.land/Configuring/Window-Rules/ for more
 # See https://wiki.hypr.land/Configuring/Workspace-Rules/ for workspace rules
 
-# Example windowrules that are useful
+# === Games & Steam floating rules (minimal, targeted) ===
+windowrule = float on, match:content 3          # Most Proton/Steam games
+windowrule = fullscreen on, match:content 3    # Let games control fullscreen/borderless
+windowrule = float on, match:initial_class ^steam_app_  # Individual Steam games if needwindowrule = float, match:initial_class ^steam_app_
+windowrule = center on, match:class ^([Ss]team)$
+
+# Path of Exile 2 — custom size + force it to respect our aspect
+windowrule = float on, match:class steam_app_2694490
+windowrule = size 1900 900, match:class steam_app_2694490
+windowrule = center on, match:class steam_app_2694490
+windowrule = fullscreen off, match:class steam_app_2694490   # crucial — stops game from overriding size
+
+# qimgv & mpv always floats
+windowrule {
+    name = float-media-img
+    match:class = ^(qimgv)$
+    float = on
+    center = on
+    size = 1366 768
+}
+windowrule {
+    name = float-media-vid
+    match:class = ^(mpv)$
+    float = on
+    center = on
+    size = 1366 768
+}
+windowrule {
+    name = float-qbittorrent
+    match:class = ^(org\.qbittorrent\.qBittorrent)$
+    float = on
+    size = 1366 768
+    center = on
+}
+windowrule {
+    name = float-nemo
+    match:class = ^(nemo)$
+    float = on
+    size = 1366 768
+    center = on
+}
 
 windowrule {
     # Ignore maximize requests from all apps. You'll probably like this.
     name = suppress-maximize-events
     match:class = .*
-
     suppress_event = maximize
 }
 
@@ -340,7 +382,6 @@ windowrule {
     match:float = true
     match:fullscreen = false
     match:pin = false
-
     no_focus = true
 }
 
@@ -351,6 +392,5 @@ windowrule {
     match:class = hyprland-run
 
     move = 20 monitor_h-120
-    float = yes
+    float = on 
 }
-
