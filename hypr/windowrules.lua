@@ -37,6 +37,8 @@ hl.window_rule({ match = { class = "^(brave-browser)$" }, opacity = 0.9, workspa
 hl.window_rule({ match = { title = "^Grok$" }, workspace = "3" })
 -- 4: Social
 hl.window_rule({ match = { class = "^(discord|com.rtosta.zapzap)$" }, opacity = 0.90, workspace = "4" })
+-- 5: AudioRelay
+hl.window_rule({ match = { title = "^AudioRelay" }, opacity = 0.9, workspace = "5" })
 
 -- Global
 hl.window_rule({ name = "suppress-maximize-events", match = { class = ".*" }, suppress_event = "maximize" })
