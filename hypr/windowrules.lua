@@ -1,63 +1,51 @@
 -- WINDOW RULES
 -- Wiki: https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 
-hl.window_rule({ match = { content = "3" }, float = true, fullscreen = true })
-
--- Games & Steam
-hl.window_rule({ match = { class = "^steam_app_" }, float = true })
 hl.window_rule({ match = { class = "^([Ss]team)$" }, center = true })
+
+-- Float: Apps (Nemo / QBittorrent)
+hl.window_rule({
+	name = "float-apps",
+	match = { class = "^(org\\.qbittorrent\\.qBittorrent|nemo)$" },
+	float = true,
+	size = { 1366, 768 },
+	center = true,
+	opacity = 0.80,
+})
+-- Float-NoOpacity: Media (QIMGv & MPV)
+hl.window_rule({
+	name = "float-media",
+	match = { class = "^(qimgv|mpv)$" },
+	float = true,
+	center = true,
+	size = { 1366, 768 },
+})
+-- 1: Flex + Kitty
+hl.window_rule({ match = { class = "^(kitty)$" }, workspace = "1" })
+-- 2: Games ( Heroic & Steam )
+hl.window_rule({ match = { content = "game" }, float = true })
+hl.window_rule({ match = { class = "^steam_app_" }, float = true, center = true, workspace = "1" })
 hl.window_rule({
 	match = { class = "steam_app_2694490" },
-	float = true,
 	size = { 1900, 900 },
-	center = true,
 	fullscreen = false,
 })
-
--- Media
-hl.window_rule({
-	name = "float-media-img",
-	match = { class = "^(qimgv)$" },
-	float = true,
-	center = true,
-	size = { 1366, 768 },
-})
-hl.window_rule({
-	name = "float-media-vid",
-	match = { class = "^(mpv)$" },
-	float = true,
-	center = true,
-	size = { 1366, 768 },
-})
-
--- Apps
-hl.window_rule({
-	name = "float-qbittorrent",
-	match = { class = "^(org\\.qbittorrent\\.qBittorrent)$" },
-	float = true,
-	size = { 1366, 768 },
-	center = true,
-	opacity = 0.85,
-})
-hl.window_rule({
-	name = "float-nemo",
-	match = { class = "^(nemo)$" },
-	float = true,
-	size = { 1366, 768 },
-	center = true,
-	opacity = 0.85,
-})
+-- 2: VSCode
+hl.window_rule({ match = { class = "^(code)$" }, opacity = 0.9, workspace = "1" })
+-- 3: Browsers
+hl.window_rule({ match = { class = "^(brave-browser)$" }, opacity = 0.9, workspace = "3" })
+hl.window_rule({ match = { title = "^Grok$" }, workspace = "3" })
+-- 4: Social
+hl.window_rule({ match = { class = "^(discord|com.rtosta.zapzap)$" }, opacity = 0.90, workspace = "4" })
 
 -- Global
 hl.window_rule({ name = "suppress-maximize-events", match = { class = ".*" }, suppress_event = "maximize" })
-
--- XWayland fix
+-- XWayland Drag Fix
 hl.window_rule({
 	name = "fix-xwayland-drags",
 	match = { class = "^$", title = "^$", xwayland = true, float = true, fullscreen = false, pin = false },
 	no_focus = true,
 })
-
 -- Hyprland-run helper
 hl.window_rule({
 	name = "move-hyprland-run",

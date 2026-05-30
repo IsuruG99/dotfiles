@@ -1,24 +1,25 @@
+
 {
     "layer": "top",
     "position": "top",
     "height": 28,
-    "spacing": 0,
+    "spacing": 2,
 
     "modules-left": [
-        "hyprland/workspaces"
+        "hyprland/window"
     ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/workspaces"
     ],
     "modules-right": [
         "custom/gpu",
         "cpu",
         "memory",
         "network",
-        "custom/network-speed",
         "pulseaudio",
         "clock",
-        "tray"
+        "tray",
+        "custom/notification"
     ],
 
     // ────────────────────────────────────────
@@ -68,15 +69,6 @@
         "format-disconnected": "Disconnected ⚠",
         "tooltip-format": "{ifname}: {ipaddr}"
     },
-    // New combined network module (speed + connection info)
-    "custom/network-speed": {
-        "exec": "~/.config/waybar/scripts/network-speed.sh",
-        "return-type": "json",
-        "interval": 5,
-        "format": "{}",
-        "tooltip": true
-    },
-
     "pulseaudio": {
         "format": "{volume}% {icon}",
         "format-muted": "Muted {icon}",
@@ -94,5 +86,31 @@
 
     "tray": {
         "spacing": 10
+    },
+    "custom/notification": {
+      "format": "{icon}",
+      "format-icons": {
+        "notification":
+          "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
+        "none": "",
+        "dnd-notification":
+          "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
+        "dnd-none": "",
+        "inhibited-notification":
+          "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
+        "inhibited-none": "",
+        "dnd-inhibited-notification":
+          "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
+        "dnd-inhibited-none": ""
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true,
+      "tooltip": false
     }
+  } 
 }
+
