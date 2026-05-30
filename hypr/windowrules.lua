@@ -1,12 +1,11 @@
 -- WINDOW RULES
 -- Wiki: https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 
--- Games & Steam
 hl.window_rule({ match = { content = "3" }, float = true, fullscreen = true })
+
+-- Games & Steam
 hl.window_rule({ match = { class = "^steam_app_" }, float = true })
 hl.window_rule({ match = { class = "^([Ss]team)$" }, center = true })
-
--- Path of Exile 2
 hl.window_rule({
 	match = { class = "steam_app_2694490" },
 	float = true,
@@ -38,6 +37,7 @@ hl.window_rule({
 	float = true,
 	size = { 1366, 768 },
 	center = true,
+	opacity = 0.85,
 })
 hl.window_rule({
 	name = "float-nemo",
@@ -45,6 +45,7 @@ hl.window_rule({
 	float = true,
 	size = { 1366, 768 },
 	center = true,
+	opacity = 0.85,
 })
 
 -- Global

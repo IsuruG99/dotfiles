@@ -1,0 +1,11 @@
+@import 'colors.css';
+window,
+.background {
+    background-color: rgba(20,20,20,0.65);
+}
+
+.nemo-window {
+    background-color: rgba(20,20,20,0.65);
+}
+
+
