@@ -4,7 +4,7 @@
 hl.config({
 	general = {
 		gaps_in = 4,
-		gaps_out = 8,
+		gaps_out = 5,
 		border_size = 2,
 
 		col = {
@@ -18,7 +18,7 @@ hl.config({
 	},
 
 	decoration = {
-		rounding = 10,
+		rounding = 5,
 		rounding_power = 2,
 
 		active_opacity = 1.0,
@@ -80,4 +80,3 @@ hl.config({
 		vfr = true,
 	},
 })
-)
