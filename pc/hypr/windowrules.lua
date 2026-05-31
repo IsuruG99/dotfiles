@@ -15,7 +15,7 @@ hl.window_rule({
 -- Float-NoOpacity: Media (QIMGv & MPV)
 hl.window_rule({
 	name = "float-media",
-	match = { class = "^(qimgv|mpv)$" },
+	match = { class = "^(qimgv|mpv|com.github.PintaProject.Pinta)$" },
 	float = true,
 	center = true,
 	size = { 1366, 768 },

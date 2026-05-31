@@ -1,6 +1,7 @@
 # dotfiles
 ## Personal Linux Configs
 - Just a beginner getting their feet wet
+<<<<<<< HEAD
 - Split to my PC & Laptop Configs
 
 ## PC (Hyprland)
