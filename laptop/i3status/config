@@ -1,0 +1,49 @@
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 2
+    
+    # Duskfox "Good" (Soft Blue-Green)
+    color_good = "#95c932" 
+    # Duskfox "Statusline" (Grey-Blue)
+    color_degraded = "#8188a9"
+}
+
+order += "cpu_usage"
+order += "memory"
+order += "disk /"
+order += "wireless _first_"
+order += "battery 0"
+order += "tztime local"
+
+cpu_usage {
+    format = " CPU: %usage "
+}
+
+memory {
+    format = " RAM: %used "
+    threshold_degraded = "1G"
+    format_degraded = " MEMORY LOW: %free "
+}
+
+disk "/" {
+    format = " SSD: %avail "
+}
+
+wireless _first_ {
+    # If this stays empty, we will need to find your interface name
+    format_up = " NET: %essid %quality "
+    format_down = " NET: DOWN "
+}
+
+battery 0 {
+    format = " : %percentage "
+    format_down = " NO BAT "
+    last_full_capacity = true
+    integer_battery_capacity = true
+}
+
+tztime local {
+    # This gives you " 04:30 PM "
+    format = " %I:%M %p "
+}
