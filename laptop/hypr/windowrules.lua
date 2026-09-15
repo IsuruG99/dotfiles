@@ -1,0 +1,50 @@
+hl.window_rule({
+	name = "float-apps",
+	match = { class = "^(org\\.qbittorrent\\.qBittorrent|nemo)$" },
+	float = true,
+	size = { 1366, 768 },
+	center = true,
+})
+hl.window_rule({
+	name = "float-media",
+	match = { class = "^(qimgv|mpv|com.github.PintaProject.Pinta)$" },
+	float = true,
+	center = true,
+	size = { 1366, 768 },
+})
+hl.window_rule({
+	name = "float-tray-apps",
+	match = { class = "^(nm-connection-editor|blueman-manager)$" },
+	float = true,
+	size = { 600, 400 },
+	move = { 1300, 40 },
+})
+hl.window_rule({
+	name = "float-packettracer-subwindows",
+	match = {
+		class = "^PacketTracer$",
+		title = "negative:^Cisco Packet Tracer",
+	},
+	float = true,
+	size = { 800, 950 },
+	center = true,
+})
+-- Workspace Split: Allows both
+-- Kitty - VSCode - Browser - Social -> Programming
+-- Obsidian - ONLYOFFICE - Browser - Social -> Document Editing
+hl.window_rule({
+	match = { class = "^(kitty|md\\.obsidian\\.Obsidian)$" },
+	workspace = "1",
+})
+hl.window_rule({
+	match = { class = "^(code|ONLYOFFICE)$" },
+	workspace = "2",
+})
+hl.window_rule({
+	match = { class = "^(brave-browser)$" },
+	workspace = "3",
+})
+hl.window_rule({
+	match = { class = "^(vesktop|com.rtosta.zapzap)$" },
+	workspace = "4",
+})

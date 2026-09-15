@@ -16,11 +16,11 @@ hl.config({
 	},
 
 	decoration = {
-		rounding = 5,
-		rounding_power = 2,
+		rounding = 0,
+		rounding_power = 0,
 
-		active_opacity = 1.0,
-		inactive_opacity = 1.0,
+		active_opacity = 0.9,
+		inactive_opacity = 0.9,
 
 		shadow = {
 			enabled = false,
@@ -28,9 +28,6 @@ hl.config({
 
 		blur = {
 			enabled = false,
-			size = 1,
-			passes = 1,
-			vibrancy = 0.2,
 		},
 	},
 })
@@ -39,7 +36,7 @@ hl.config({
 hl.curve("linear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
 hl.curve("quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } })
 
-hl.animation({ leaf = "global", enabled = true, speed = 15, bezier = "linear" })
+hl.animation({ leaf = "global", enabled = false })
 
 hl.animation({ leaf = "border", enabled = false })
 hl.animation({ leaf = "windows", enabled = false })
@@ -48,7 +45,7 @@ hl.animation({ leaf = "windowsOut", enabled = false })
 
 hl.animation({ leaf = "fadeIn", enabled = false })
 hl.animation({ leaf = "fadeOut", enabled = false })
-hl.animation({ leaf = "fade", enabled = true, speed = 10, bezier = "quick" })
+hl.animation({ leaf = "fade", enabled = false })
 
 hl.animation({ leaf = "layers", enabled = false })
 hl.animation({ leaf = "layersIn", enabled = false })

@@ -1,8 +1,9 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 28,
-    "spacing": 0,
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "spacing": 0,
+  "margin": "6px 8px 0px 8px",
 
     "modules-left": [
         "cpu",
@@ -40,7 +41,8 @@
         "format-ethernet": "{ipaddr}",
         "format-disconnected": "Offline",
         "tooltip": false,
-        "interval": 5
+        "interval": 5,
+        "on-click": "nm-connection-editor"
     },
 
     "pulseaudio": {

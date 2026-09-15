@@ -18,9 +18,14 @@
     pkgs.i3status
     pkgs.hyprland
     pkgs.waybar
-    
+
+    pkgs.blueman
+   
+    pkgs.vesktop
     pkgs.kitty
     pkgs.rofi
+    pkgs.qimgv
+    pkgs.grimblast
     pkgs.neovim
     pkgs.git
   ];
