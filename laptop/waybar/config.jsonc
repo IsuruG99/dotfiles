@@ -1,29 +1,36 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 28,
+  "height": 30,
   "spacing": 0,
-  "margin": "6px 8px 0px 8px",
+  "margin": "5px 5px 0px 5px",
 
     "modules-left": [
         "cpu",
-        "memory"
+        "memory",
+        "custom/return"
     ],
 
     "modules-center": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
     ],
 
     "modules-right": [
         "network",
         "pulseaudio",
         "clock",
+        "battery",
         "tray"
     ],
 
     "hyprland/workspaces": {
         "format": "{icon}",
-        "on-click": "activate"
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'"
+    },
+
+    "custom/return": {
+      "format": "0",
+      "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'"
     },
 
     "cpu": {
@@ -40,9 +47,18 @@
         "format-wifi": "{essid} {signalStrength}%",
         "format-ethernet": "{ipaddr}",
         "format-disconnected": "Offline",
+        "format-disabled": "Disabled",
         "tooltip": false,
         "interval": 5,
-        "on-click": "nm-connection-editor"
+        "on-click": "nmgui"
+    },
+
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂄",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "interval": 10,
+        "tooltip": false
     },
 
     "pulseaudio": {
@@ -51,7 +67,8 @@
         "format-icons": {
             "default": ["", "", ""]
         },
-        "scroll-step": 5
+        "scroll-step": 5,
+        "on-click": "pavucontrol"
     },
 
     "clock": {

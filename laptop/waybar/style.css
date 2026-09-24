@@ -1,12 +1,24 @@
 * {
-    font-family: "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 13px;
+    font-family: "JetBrains Mono Nerd Font", sans-serif;
+    font-size: 15px;
     color: #e6eaea;
 }
 
 window#waybar {
     background: #1e1e2e;
-    border-bottom: 2px solid #3a7e86;
+    border: 2px solid #3a7e86;
+}
+
+.modules-left {
+    margin-left: 10px;
+}
+.modules-right {
+    margin-right: 10px;
+}
+.modules-left > widget,
+.modules-right > widget {
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
 #workspaces button,
@@ -14,6 +26,7 @@ window#waybar {
 #memory,
 #network,
 #pulseaudio,
+#battery,
 #clock {
     padding: 3px 7px;
 }
@@ -21,7 +34,7 @@ window#waybar {
 #workspaces button {
     background: transparent;
     color: #a0b0b8;
-    font-size: 16px;
+    font-size: 18px;
     border: none;
 }
 
