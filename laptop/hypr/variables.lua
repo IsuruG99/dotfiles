@@ -1,4 +1,4 @@
 terminal = "kitty"
 fileManager = "nemo"
-menu = "rofi -show drun"
+menu = "walker"
 mainMod = "SUPER"

@@ -1,6 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
+
+  imports = [
+    inputs.walker.homeManagerModules.default
+  ];
+
   home.username = "isurug";
   home.homeDirectory = "/home/isurug";
   home.stateVersion = "26.05";
@@ -19,12 +24,13 @@
     pkgs.i3status
     pkgs.hyprland
     pkgs.hyprcursor
+    pkgs.hyprlauncher
+    pkgs.swaybg
     pkgs.xcur2png
     pkgs.waybar
 
     pkgs.blueman
     pkgs.pavucontrol
-    pkgs.nmgui
     pkgs.docker
 
     pkgs.vesktop
@@ -48,6 +54,12 @@
   ];
    home.sessionVariables = {
     # EDITOR = "emacs";
+  };
+
+  programs.walker = {
+    enable = true;
+    runAsService = true;
+    config = {};
   };
 
   programs.fzf = {

@@ -1,9 +1,40 @@
 hl.window_rule({
 	name = "float-apps",
-	match = { class = "^(org\\.qbittorrent\\.qBittorrent|nemo)$" },
+	match = {
+		class = "^(org\\.qbittorrent\\.qBittorrent|nemo)$",
+		initial_title = "negative:^$",
+	},
 	float = true,
 	size = { 1366, 768 },
 	center = true,
+})
+hl.window_rule({
+	name = "nemo-subwindows",
+	match = {
+		class = "^nemo$",
+		initial_title = "^$",
+	},
+	float = true,
+	opacity = 1.0,
+})
+
+hl.window_rule({
+	name = "nemo-subwindows",
+	match = {
+		class = "^nemo$",
+		title = "^$",
+	},
+	float = true,
+	opacity = 1.0,
+})
+hl.window_rule({
+	name = "nemo-subwindows",
+	match = {
+		class = "^nemo$",
+		initial_title = "^$",
+	},
+	opacity = 1.0,
+	float = true,
 })
 hl.window_rule({
 	name = "float-media",
@@ -42,9 +73,10 @@ hl.window_rule({
 })
 hl.window_rule({
 	name = "float-desktop-subwindows",
-	match = { class = "^(DesktopEditors)$" },
+	match = { class = "^(DesktopEditors|xdg-desktop-portal-gtk)$" },
 	float = true,
 	center = true,
+	size = { 800, 950 },
 })
 hl.window_rule({
 	name = "float-gns-subwindows",
@@ -71,7 +103,7 @@ hl.window_rule({
 	workspace = "3",
 })
 hl.window_rule({
-	match = { class = "^(vesktop|com.rtosta.zapzap)$" },
+	match = { class = "^(discord|vesktop|com.rtosta.zapzap)$" },
 	workspace = "4",
 })
 hl.window_rule({
