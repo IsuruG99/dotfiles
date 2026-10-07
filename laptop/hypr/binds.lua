@@ -5,7 +5,8 @@ hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + C", hl.dsp.window.close())
+-- hl.bind(mainMod .. " + C", hl.dsp.window.close())
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("close-safety"))
 
 -- Workspaces
 for i = 1, 10 do
@@ -55,3 +56,14 @@ hl.bind(
 	"SHIFT + Print",
 	hl.dsp.exec_cmd("grimblast --freeze --notify copysave output ~/Pictures/SS/Snip/$(date +%Y-%m-%d_%H-%M-%S).png")
 )
+
+-- Conditional Discord Test
+hl.bind("CTRL + apostrophe", function()
+	local w = hl.get_active_window()
+
+	if w and w.class:match("^discord$") then
+		hl.dispatch(hl.dsp.no_op())
+	else
+		return { ok = false }
+	end
+end, { auto_consuming = true })

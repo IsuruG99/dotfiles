@@ -62,6 +62,23 @@ hl.window_rule({
 	center = true,
 })
 hl.window_rule({
+	name = "float-betterbird-subwindows",
+	match = {
+		class = "^eu.betterbird.Betterbird$",
+		title = "negative:^Betterbird$",
+	},
+	float = true,
+	center = true,
+})
+hl.window_rule({
+	name = "size-betterbird-write",
+	match = {
+		class = "^eu.betterbird.Betterbird$",
+		title = "^Write:.*$",
+	},
+	size = { 800, 600 },
+})
+hl.window_rule({
 	name = "float-brave-subwindows",
 	match = {
 		class = "^brave-browser",
@@ -76,7 +93,6 @@ hl.window_rule({
 	match = { class = "^(DesktopEditors|xdg-desktop-portal-gtk)$" },
 	float = true,
 	center = true,
-	size = { 800, 950 },
 })
 hl.window_rule({
 	name = "float-gns-subwindows",
@@ -87,6 +103,7 @@ hl.window_rule({
 	size = { 800, 950 },
 	center = true,
 })
+
 -- Workspace Split: Allows both
 -- Kitty - VSCode - Browser - Social -> Programming
 -- Obsidian - ONLYOFFICE - Browser - Social -> Document Editing
@@ -103,7 +120,7 @@ hl.window_rule({
 	workspace = "3",
 })
 hl.window_rule({
-	match = { class = "^(discord|vesktop|com.rtosta.zapzap)$" },
+	match = { class = "^(Ferdium|discord|vesktop|com.rtosta.zapzap)$" },
 	workspace = "4",
 })
 hl.window_rule({
