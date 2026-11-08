@@ -715,6 +715,14 @@ time_format = "relative"
 [providers.max_results_provider]
 
 [[providers.prefixes]]
+prefix = "o "
+provider = "menus:open"
+
+[[providers.prefixes]]
+prefix = "f "
+provider = "menus:folder"
+
+[[providers.prefixes]]
 prefix = "vt"
 provider = "menus:virustotal"
 

@@ -103,6 +103,15 @@ hl.window_rule({
 	size = { 800, 950 },
 	center = true,
 })
+hl.window_rule({
+	name = "float-copyq",
+	match = {
+		class = "^(com.github.hluk.copyq)$",
+	},
+	float = true,
+	size = { 550, 950 },
+	center = true,
+})
 
 -- Workspace Split: Allows both
 -- Kitty - VSCode - Browser - Social -> Programming
@@ -116,7 +125,7 @@ hl.window_rule({
 	workspace = "2",
 })
 hl.window_rule({
-	match = { class = "^(brave-browser)$" },
+	match = { class = "^(brave-browser|microsoft-edge)$" },
 	workspace = "3",
 })
 hl.window_rule({

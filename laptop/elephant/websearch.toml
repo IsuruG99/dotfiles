@@ -1,0 +1,30 @@
+[[entries]]
+name = "Open File"
+prefix = "o"
+provider = "open"
+
+[[entries]]
+name = "Open Folder"
+prefix = "f"
+provider = "folder"
+
+[[entries]]
+name = "VirusTotal"
+prefix = "vt"
+url = "https://www.virustotal.com/gui/search/%TERM%"
+
+[[entries]]
+name = "YouTube"
+prefix = "yt"
+url = "https://www.youtube.com/results?search_query=%TERM%"
+
+[[entries]]
+name = "ChatGPT"
+prefix = "gpt"
+url = "https://chatgpt.com/?q=%TERM%"
+
+[[entries]]
+name = "Brave"
+prefix = "br"
+default = true
+url = "https://search.brave.com/search?q=%TERM%"

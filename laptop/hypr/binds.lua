@@ -47,6 +47,9 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 -- Lock
 hl.bind(mainMod .. " + l", hl.dsp.exec_cmd("swaylock"))
 
+-- Clipboard
+hl.bind(mainMod .. " + v", hl.dsp.exec_cmd("copyq toggle"))
+
 -- Screenshots
 hl.bind(
 	"Print",
